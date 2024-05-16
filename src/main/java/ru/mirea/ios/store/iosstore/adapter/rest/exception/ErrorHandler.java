@@ -13,6 +13,7 @@ import ru.mirea.ios.store.iosstore.app.exeption.PrivilegesException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @RestControllerAdvice
 @Slf4j
@@ -22,6 +23,7 @@ public class ErrorHandler {
     public ApiError handleNotFoundException(final NotFoundException e) {
         log.warn("NotFoundException, {}", e.getMessage());
         return ApiError.builder()
+                .errors(List.of("NotFoundException"))
                 .status(HttpStatus.NOT_FOUND)
                 .reason("Data was not found")
                 .message(e.getMessage())
